@@ -7,12 +7,12 @@ Adobe After Effects では、**スピードグラフ**はプロパティの値�
 
 * **speed（速度）**
 
-  * グラフの傾き（単位：値/秒）
+  * グラフの傾き（単位はプロパティによって異なる値/秒、例：px/sec、°/sec）
   * 値変化の急さを決定する
 * **influence（影響度）**
 
   * 時間方向のハンドル長さ（%）
-  * 高いほど、加速・減速の範囲が長くなる
+  * 高いほど、隣接キーフレーム間隔に対するハンドル長（時間方向の比率）が長くなり、加速・減速の範囲が広がる
 
 **例：**
 デフォルトの「イージーイーズ」では、入出速度0・影響度33.33%で、ほぼ正弦波に近いS字カーブが得られる。
@@ -50,8 +50,8 @@ p(u) = (2u^3 - 3u^2 + 1) * p0
 
 * p0, p1 = キーフレームの値
 * m0, m1 = 接線（tangent）
-  m0 = speed\_out × 区間時間
-  m1 = speed\_in  × 区間時間
+  - m0 = speed_out × 区間時間（秒単位の速度を、値単位の接線長に変換）
+  - m1 = speed_in  × 区間時間（同上）
 
 この式で、与えられた速度と影響度から滑らかなS字カーブを生成できる。
 
@@ -61,6 +61,7 @@ p(u) = (2u^3 - 3u^2 + 1) * p0
 
 ```jsx
 function interpolateEase(val1, val2, t1, t2, vOut1, vIn2) {
+    // time: 現在の評価時刻（秒）
     var dt = t2 - t1;
     var u = (time - t1) / dt; 
     var m0 = vOut1 * dt;
@@ -97,5 +98,6 @@ p0   |●[Key1]───╯
 
 * [Adobe After Effects Scripting Guide – KeyframeEase](https://ae-scripting.docsforadobe.dev/other/keyframeease.html)
 * [Adobe公式 ヘルプ – キーフレーム補間](https://helpx.adobe.com/jp/after-effects/using/keyframe-interpolation.html)
+
 
 
