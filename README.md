@@ -4,7 +4,7 @@ After Effects のキーフレーム イージングの数学モデルに関す�
 
 ---
 
-# After Effects Easing Mathematical Model / アフターエフェクトのイージング数学モデル
+# After Effects Easing Mathematical Model
 This repository contains a technical note on the mathematical model of After Effects keyframe easing.  
 このリポジトリは、After Effects のキーフレーム イージングの数学モデルに関する技術ノートです。
 
